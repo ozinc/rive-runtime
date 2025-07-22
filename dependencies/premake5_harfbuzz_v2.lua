@@ -259,7 +259,6 @@ do
         flags({ 'FatalCompileWarnings' })
         buildoptions({
             '-Werror=format',
-            '-Wimplicit-int-conversion',
             '-Werror=vla',
         })
     end

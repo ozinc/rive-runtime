@@ -14,26 +14,22 @@ includedirs({
     '/usr/include',
 })
 
-if os.host() == 'macosx' then
-    links({
-        'Cocoa.framework',
-        'CoreFoundation.framework',
-        'IOKit.framework',
-        'Security.framework',
-        'bz2',
-        'iconv',
-        'lzma',
-        'rive',
-        'z', -- lib av format
-    })
-else
-    links({ 'm', 'rive', 'z', 'dl' })
-end
+links({
+    'm',
+    'z',
+    'dl',
+    'rive',
+    'rive_yoga',
+    'rive_harfbuzz',
+    'rive_sheenbidi',
+    'miniaudio'
+})
 
 libdirs({
     '../../build/%{cfg.system}/bin/%{cfg.buildcfg}',
     '/usr/local/lib',
     '/usr/lib',
+    '../../out/release',
 })
 
 files({ '../**.cpp', '../../utils/no_op_factory.cpp' })

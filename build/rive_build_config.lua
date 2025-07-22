@@ -38,10 +38,11 @@ newoption({
     value = 'type',
     description = 'Choose which toolchain to build with',
     allowed = {
+        { 'gcc',   'Build with GCC' },
         { 'clang', 'Build with Clang' },
         { 'msc', 'Build with the Microsoft C/C++ compiler' },
     },
-    default = 'clang',
+    default = 'gcc',
 })
 
 newoption({

@@ -202,10 +202,11 @@ else
         RIVE_BUILD_SYSTEM="${RIVE_BUILD_SYSTEM:-gmake2}"
     fi
 
+    # Specific to Linux builds
     RIVE_PREMAKE_ARGS="$RIVE_BUILD_SYSTEM --config=$RIVE_CONFIG --out=$RIVE_OUT $RIVE_PREMAKE_ARGS"
     if [ ! -z "$RIVE_OS" ]; then RIVE_PREMAKE_ARGS="$RIVE_PREMAKE_ARGS --os=$RIVE_OS"; fi
     if [ ! -z "$RIVE_VARIANT" ]; then RIVE_PREMAKE_ARGS="$RIVE_PREMAKE_ARGS --variant=$RIVE_VARIANT"; fi
-    if [ ! -z "$RIVE_ARCH" ]; then RIVE_PREMAKE_ARGS="$RIVE_PREMAKE_ARGS --arch=$RIVE_ARCH"; fi
+    if [ ! -z "$RIVE_ARCH" ]; then RIVE_PREMAKE_ARGS="$RIVE_PREMAKE_ARGS --arch=x64"; fi
 
     if [[ "$RIVE_CLEAN" = true ]]; then
         rm -fr "./$RIVE_OUT"
@@ -275,7 +276,7 @@ else
 fi
 
 echo premake5 $RIVE_PREMAKE_ARGS
-premake5 $RIVE_PREMAKE_ARGS | grep -v '^Done ([1-9]*ms).$'
+premake5 --file=premake5_v2.lua $RIVE_PREMAKE_ARGS | grep -v '^Done ([1-9]*ms).$'
 
 if [[ "$RIVE_NO_BUILD" = true ]]; then
     echo "Not building as nobuild was specified"

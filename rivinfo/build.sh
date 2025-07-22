@@ -11,6 +11,8 @@ cd build
 
 OPTION=$1
 
+PREMAKE5_BIN="../../build/dependencies/premake-core/bin/release/premake5"
+
 if [ "$OPTION" = 'help' ]; then
     echo build.sh - build debug library
     echo build.sh clean - clean the build
@@ -18,9 +20,9 @@ if [ "$OPTION" = 'help' ]; then
 elif [ "$OPTION" = "clean" ]; then
     echo Cleaning project ...
     # TODO: fix premake5 clean to bubble the clean command to dependent projects
-    premake5 gmake && make clean
+    ${PREMAKE5_BIN} gmake2 && make clean
 elif [ "$OPTION" = "release" ]; then
-    premake5 gmake && make config=release -j7
+    ${PREMAKE5_BIN} gmake2 && make config=release -j7
 else
-    premake5 gmake && make -j7
+    ${PREMAKE5_BIN} gmake2 && make -j7
 fi
